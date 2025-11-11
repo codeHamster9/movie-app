@@ -5,29 +5,32 @@ import Layout from './components/Layout/Layout'
 import MoviesPage from './pages/movies'
 import Notfound from './pages/Notfound'
 
-const BASE_PATH = '/movie-app';
+const BASE_PATH = '/movie-app'
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: (
+        <Layout>
+          <ErrorBoundary>
+            <MoviesPage />
+          </ErrorBoundary>
+        </Layout>
+      ),
+    },
+    {
+      path: '*',
+      element: (
+        <Layout>
+          <Notfound />
+        </Layout>
+      ),
+    },
+  ],
   {
-    path: '/',
-    element: (
-      <Layout>
-        <ErrorBoundary>
-          <MoviesPage />
-        </ErrorBoundary>
-      </Layout>
-    ),
+    basename: BASE_PATH,
   },
-  {
-    path: '*',
-    element: (
-      <Layout>
-        <Notfound />
-      </Layout>
-    ),
-  },
-],{
-  basename: BASE_PATH,
-})
+)
 
 export default router

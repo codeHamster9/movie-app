@@ -1,6 +1,6 @@
-const TMDB_API_KEY = "778188c6be8aa420e97fe8bcefad0815"
-const TMDB_BASE_URL = "https://api.themoviedb.org/3"
-const TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p"
+const TMDB_API_KEY = '778188c6be8aa420e97fe8bcefad0815'
+const TMDB_BASE_URL = 'https://api.themoviedb.org/3'
+const TMDB_IMAGE_BASE_URL = 'https://image.tmdb.org/t/p'
 
 export interface Movie {
   id: number
@@ -32,7 +32,12 @@ export interface MovieDetails {
   original_language: string
   production_countries: { name: string }[]
   credits: {
-    cast: { id: number; name: string; character: string; profile_path: string | null }[]
+    cast: {
+      id: number
+      name: string
+      character: string
+      profile_path: string | null
+    }[]
     crew: { id: number; name: string; job: string }[]
   }
 }
@@ -43,23 +48,32 @@ export interface SearchResponse {
   totalPages: number
 }
 
-export function getPosterUrl(path: string | null, size: "w185" | "w342" | "w500" | "original" = "w342"): string {
-  if (!path) return "/placeholder.svg?height=450&width=300"
+export function getPosterUrl(
+  path: string | null,
+  size: 'w185' | 'w342' | 'w500' | 'original' = 'w342',
+): string {
+  if (!path) return '/placeholder.svg?height=450&width=300'
   return `${TMDB_IMAGE_BASE_URL}/${size}${path}`
 }
 
 export async function getGenreList(): Promise<Genre[]> {
-  const response = await fetch(`${TMDB_BASE_URL}/genre/movie/list?api_key=${TMDB_API_KEY}`)
+  const response = await fetch(
+    `${TMDB_BASE_URL}/genre/movie/list?api_key=${TMDB_API_KEY}`,
+  )
 
   if (!response.ok) {
-    throw new Error("Failed to fetch genres")
+    throw new Error('Failed to fetch genres')
   }
 
   const data = await response.json()
   return data.genres || []
 }
 
-export async function searchMovies(query: string, page = 1, genreId?: number): Promise<SearchResponse> {
+export async function searchMovies(
+  query: string,
+  page = 1,
+  genreId?: number,
+): Promise<SearchResponse> {
   let endpoint: string
 
   // Use discover endpoint when genre is selected
@@ -82,7 +96,7 @@ export async function searchMovies(query: string, page = 1, genreId?: number): P
   const response = await fetch(endpoint)
 
   if (!response.ok) {
-    throw new Error("Failed to fetch movies")
+    throw new Error('Failed to fetch movies')
   }
 
   const data = await response.json()
@@ -95,10 +109,12 @@ export async function searchMovies(query: string, page = 1, genreId?: number): P
 }
 
 export async function getMovieDetails(movieId: number): Promise<MovieDetails> {
-  const response = await fetch(`${TMDB_BASE_URL}/movie/${movieId}?api_key=${TMDB_API_KEY}&append_to_response=credits`)
+  const response = await fetch(
+    `${TMDB_BASE_URL}/movie/${movieId}?api_key=${TMDB_API_KEY}&append_to_response=credits`,
+  )
 
   if (!response.ok) {
-    throw new Error("Failed to fetch movie details")
+    throw new Error('Failed to fetch movie details')
   }
 
   const data = await response.json()

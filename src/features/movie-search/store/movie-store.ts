@@ -1,4 +1,4 @@
-import { create } from "zustand"
+import { create } from 'zustand'
 
 interface MovieStore {
   searchQuery: string
@@ -15,7 +15,7 @@ interface MovieStore {
 }
 
 export const useMovieStore = create<MovieStore>((set) => ({
-  searchQuery: "",
+  searchQuery: '',
   selectedYear: 1970,
   selectedRating: 0,
   currentPage: 1,
@@ -25,5 +25,6 @@ export const useMovieStore = create<MovieStore>((set) => ({
   setSelectedRating: (rating) => set({ selectedRating: rating }),
   setCurrentPage: (page) => set({ currentPage: page }),
   setSelectedGenreId: (genreId) => set({ selectedGenreId: genreId }),
-  resetFilters: () => set({ selectedYear: 1970, selectedRating: 0, currentPage: 1 }),
+  resetFilters: () =>
+    set({ selectedYear: 1970, selectedRating: 0, currentPage: 1 }),
 }))

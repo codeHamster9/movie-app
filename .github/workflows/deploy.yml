@@ -2,17 +2,17 @@ name: Deploy to GitHub Pages
 
 on:
   workflow_run:
-    workflows: ["Build","Lint"]  # Replace "CI" with the exact name from your other workflow file
+    workflows: ['Build', 'Lint'] # Replace "CI" with the exact name from your other workflow file
     types:
       - completed
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
-  actions: read 
+  actions: read
 
 jobs:
   deploy:
@@ -27,15 +27,15 @@ jobs:
           path: ./dist
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      
+
       - name: Upload to Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
-      
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
