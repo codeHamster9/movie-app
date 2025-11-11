@@ -1,0 +1,1 @@
+//for cross application state management
