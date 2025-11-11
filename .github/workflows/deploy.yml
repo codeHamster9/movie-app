@@ -12,6 +12,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  actions: read 
 
 jobs:
   deploy:
@@ -19,11 +20,13 @@ jobs:
     # Only deploy if the previous workflow succeeded
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: Download build artifacts
+      - name: Download artifact from workflow run
         uses: actions/download-artifact@v4
         with:
           name: dist
           path: ./dist
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
