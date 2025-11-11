@@ -9,7 +9,7 @@ export default defineConfig(({ command }) => {
     build: {
       sourcemap: true,
     },
-    base:'/',
+    base:'/movie-app/',
     plugins: [react()],
     publicDir: 'public',
     server: {
