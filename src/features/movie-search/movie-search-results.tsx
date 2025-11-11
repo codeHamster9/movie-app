@@ -1,14 +1,14 @@
 import { useMemo } from 'react'
 
+import type { Movie } from '@/api/tmdb-api'
 import Spinner from '@/components/spinner'
+import { useMovieSearch } from '@/features/movie-search/hooks/use-movies'
 import { MovieCarousel } from '@/features/movie-search/movie-carousel'
 import { MoviePagination } from '@/features/movie-search/movie-pagination'
 import { MovieResultsCounters } from '@/features/movie-search/movie-results-counters'
-import { useDebounce } from '@/hooks/use-debounce'
-import { useMovieSearch } from '@/features/movie-search/hooks/use-movies'
-import type { Movie } from '@/api/tmdb-api'
-import { filterRanges } from '@/pages/movies'
 import { useMovieStore } from '@/features/movie-search/store/movie-store'
+import { useDebounce } from '@/hooks/use-debounce'
+import { filterRanges } from '@/pages/movies'
 
 export function MovieSearchResults() {
   const searchQuery = useMovieStore((state) => state.searchQuery)

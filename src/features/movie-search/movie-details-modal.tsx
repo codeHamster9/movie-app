@@ -1,3 +1,4 @@
+import { getPosterUrl } from '@/api/tmdb-api'
 import { Badge } from '@/components/ui/badge'
 import {
   Dialog,
@@ -9,7 +10,6 @@ import {
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useMovieDetails } from '@/features/movie-search/hooks/use-movies'
-import { getPosterUrl } from '@/api/tmdb-api'
 
 interface MovieDetailsModalProps {
   movieId: number | null

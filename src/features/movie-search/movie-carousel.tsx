@@ -2,6 +2,8 @@ import Autoplay from 'embla-carousel-autoplay'
 import { useEffect, useState } from 'react'
 import * as React from 'react'
 
+import { getPosterUrl } from '@/api/tmdb-api'
+import type { Movie } from '@/api/tmdb-api'
 import {
   Carousel,
   CarouselContent,
@@ -12,8 +14,6 @@ import {
 } from '@/components/ui/carousel'
 import { MovieCard } from '@/features/movie-search/movie-card'
 import { MovieDetailsModal } from '@/features/movie-search/movie-details-modal'
-import { getPosterUrl } from '@/api/tmdb-api'
-import type { Movie } from '@/api/tmdb-api'
 
 interface MovieCarouselProps {
   movies: Movie[]

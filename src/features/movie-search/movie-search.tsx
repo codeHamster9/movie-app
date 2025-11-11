@@ -1,5 +1,5 @@
-import { useGenreList } from '@/features/movie-search/hooks/use-movies'
 import type { Genre } from '@/api/tmdb-api'
+import { useGenreList } from '@/features/movie-search/hooks/use-movies'
 import { useMovieStore } from '@/features/movie-search/store/movie-store'
 
 import { Autocomplete } from '../../components/autocomplete'
