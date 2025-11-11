@@ -5,6 +5,8 @@ import Layout from './components/Layout/Layout'
 import MoviesPage from './pages/movies'
 import Notfound from './pages/Notfound'
 
+const BASE_PATH = '/movie-app';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -24,6 +26,8 @@ const router = createBrowserRouter([
       </Layout>
     ),
   },
-])
+],{
+  basename: BASE_PATH,
+})
 
 export default router
