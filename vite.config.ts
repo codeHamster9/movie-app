@@ -9,12 +9,12 @@ export default defineConfig(({ command }) => {
     build: {
       sourcemap: true,
     },
-    base:'/movie-app/',
+    base:'/',
     plugins: [react()],
     publicDir: 'public',
     server: {
       host: true,
-      port: 3000,
+      port: 5173,
     },
     resolve: {
       alias: {
